@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="stubsConfigRepository" class="com.habs.repository.StubsConfigRepositoryImpl" />
+
+    <bean id="stubsService" class="com.habs.service.StubsServiceImpl">
+        <property name="stubsConfigRepository" value="stubsConfigRepository" />
+    </bean>
+    
+    <bean id="stubsServiceTest" class="com.habs.service.StubsServiceImplTest">
+        <property name="stubsService" value="stubsService" />
+    </bean>
+
+</beans>
