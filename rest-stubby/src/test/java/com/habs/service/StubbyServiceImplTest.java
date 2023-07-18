@@ -19,16 +19,8 @@ import com.habs.entities.StubbyConfig;
 class StubbyServiceImplTest {
 	
 	@Autowired
-	public StubbyService stubbyService;
+	private StubbyService stubbyService;
 	
-	public StubbyService getStubsService() {
-		return stubbyService;
-	}
-
-	public void setStubsService(StubbyService stubbyService) {
-		this.stubbyService = stubbyService;
-	}	
-
 	private static final String SHEET_ID = "102dcfQvUAfVUl4xYogQkbDljmUgwbB_cGMO8CyZk47g";
 
 	@Test
