@@ -40,7 +40,7 @@ public class StubbyController {
 		logger.debug(""+configList);
 		
 		for(StubbyConfig config : configList) {
-			JsonPath.parse(document).add(config.getResponseTarget(), JsonPath.parse(config.getValue()).read("$"));
+			JsonPath.parse(document).set(config.getResponseTarget(), JsonPath.parse(config.getValue()).read("$"));
 		}
 		
 		return JsonPath.parse(document).read("$.response");
