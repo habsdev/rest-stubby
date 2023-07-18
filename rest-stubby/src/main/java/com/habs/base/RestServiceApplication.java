@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.habs.boot", "com.habs.controller"})
+@ComponentScan(basePackages = {"com.habs.base", "com.habs.controller"})
 public class RestServiceApplication {
 
 	public static void main(String[] args) {
