@@ -7,11 +7,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import com.habs.entities.StubbyConfig;
+import com.habs.entities.StubConfig;
 
 @Repository
 public interface StubbyRepository {
 	
-	public List<StubbyConfig> retrieveStubConfig(String sheetId) throws IOException, GeneralSecurityException;
+	public List<StubConfig> retrieveStubConfig(String sheetId) throws IOException, GeneralSecurityException;
 
 }

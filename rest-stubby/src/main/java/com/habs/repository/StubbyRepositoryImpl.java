@@ -10,7 +10,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import com.habs.base.BaseService;
-import com.habs.entities.StubbyConfig;
+import com.habs.entities.StubConfig;
 import com.habs.repository.GoogleSheetsReaderDao;
 
 @Component
@@ -23,26 +23,21 @@ public class StubbyRepositoryImpl extends BaseService implements StubbyRepositor
 		this.googleSheetsReaderDao = new GoogleSheetsReaderDao();
 	}
 
-	public List<StubbyConfig> retrieveStubConfig(String sheetId) throws IOException, GeneralSecurityException {
+	public List<StubConfig> retrieveStubConfig(String sheetId) throws IOException, GeneralSecurityException {
 		
-		List<StubbyConfig> stubConfigList = new ArrayList<StubbyConfig>();
+		List<StubConfig> stubConfigList = new ArrayList<StubConfig>();
 		
 		List<List<Object>> recordList = this.googleSheetsReaderDao.readSheet(sheetId, SHEET_RANGE);
 		List<Object> headerList = recordList.remove(0);
 		
 		for(List<Object> record : recordList) {
-			StubbyConfig config = new StubbyConfig();
+			StubConfig config = new StubConfig();
 			
 			for(int i=0; i<headerList.size(); i++) {
 				
 				String label = (String)headerList.get(i);
 				String value = (String)record.get(i);
-				
-								
-				/*
-				Priority	Status	Action	Request 
-				Filter	Value	Target
-				*/
+			
 				
 				switch (label.toUpperCase()) {
 				  case "PRIORITY":
@@ -54,15 +49,18 @@ public class StubbyRepositoryImpl extends BaseService implements StubbyRepositor
 				  case "ACTION":
 					config.setAction(value);
 					break;
-				  case "REQUEST":
-					config.setRequestFilter(value);
+				  case "FILTER PATH":
+					config.setFilter(value);
 					break;
 				  case "VALUE":
 					config.setValue(value); 
 					break;
-				  case "TARGET":
-					config.setResponseTarget(value);					  
+				  case "TARGET PATH":
+					config.setTarget(value);					  
 					break;
+				  case "ATTRIBUTE NAME":
+					config.setKey(value);					  
+					break;					
 				  default:
 				    // code block
 				}								
